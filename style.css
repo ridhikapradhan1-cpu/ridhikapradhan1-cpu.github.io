@@ -28,8 +28,8 @@ body{
   position: fixed;
   right: 28px;
   bottom: 22px;
-  font-size: 5.6rem;     /* decently sized */
-  opacity: 0.35;         /* background feel */
+  font-size: 9 rem;     /* decently sized */
+  opacity: 0.5;         /* background feel */
   pointer-events: none;
   z-index: 0;
   animation: bearBounce 2.8s ease-in-out infinite;
