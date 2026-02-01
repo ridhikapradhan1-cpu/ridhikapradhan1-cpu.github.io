@@ -4,25 +4,25 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Valentine</title>
+
+  <!-- Bubble-like font -->
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <main class="center">
     <div class="card">
-      <!-- decorative floating emojis (behind content, outside of the text box) -->
-      <div class="decor" aria-hidden="true">
-        <span>❤️</span>
-        <span>🧸</span>
-        <span>💘</span>
-        <span>🧸</span>
-        <span>❤️</span>
-        <span>💞</span>
-        <span>🧸</span>
-        <span>💖</span>
-      </div>
+      <!-- only two floating corner emojis -->
+      <div class="corner corner-bear" aria-hidden="true">🧸</div>
+      <div class="corner corner-rose" aria-hidden="true">🌹</div>
 
       <div class="content">
-        <h1>Krishang Nayak! Will you be my Valentine?</h1>
+        <h1 class="bubble-heading">
+          <div class="line1">Krishang Nayak!</div>
+          <div class="line2">Will you be my Valentine?</div>
+        </h1>
+
         <div class="buttons" id="buttonArea">
           <button id="yes" class="btn yes">Yes</button>
           <button id="no" class="btn no">No</button>
