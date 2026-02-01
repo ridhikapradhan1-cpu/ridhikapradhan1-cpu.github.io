@@ -28,7 +28,7 @@ body{
   position: fixed;
   right: 28px;
   bottom: 22px;
-  font-size: 9 rem;     /* decently sized */
+  font-size: 25 rem;     /* decently sized */
   opacity: 0.5;         /* background feel */
   pointer-events: none;
   z-index: 0;
