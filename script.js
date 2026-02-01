@@ -14,17 +14,6 @@ function updateRects() {
   btnRect = noBtn.getBoundingClientRect();
 }
 
-/* ---- Bear peek helper ---- */
-function bearPeek() {
-  const bear = document.querySelector('.bg-bear');
-  if (!bear) return;
-
-  // Restart animation even if called rapidly
-  bear.classList.remove('peek');
-  // force reflow
-  void bear.offsetWidth;
-  bear.classList.add('peek');
-}
 
 // pick a random position inside buttonArea (top-left coords) ensuring it's at least minDist from (cx,cy)
 function chooseSafePosition(cx = null, cy = null, minDist = MIN_DISTANCE) {
@@ -80,9 +69,6 @@ function moveNoAwayFrom(clientX, clientY) {
   const pos = chooseSafePosition(clientX, clientY);
   moveNoButtonTo(pos.x, pos.y);
 
-  // trigger the cute peek whenever "No" runs away
-  bearPeek();
-}
 
 // initial random placement
 function placeNoRandom() {
@@ -93,10 +79,6 @@ function placeNoRandom() {
   const rx = padding + Math.random() * maxX;
   const ry = padding + Math.random() * maxY;
   moveNoButtonTo(rx, ry);
-
-  // optional: peek once on initial placement
-  // bearPeek();
-}
 
 // When the mouse moves inside the button area, check distance to noBtn center
 let onMouseMove = (e) => {
@@ -142,7 +124,6 @@ noBtn.addEventListener('click', (e) => {
   } else {
     const p = chooseSafePosition();
     moveNoButtonTo(p.x, p.y);
-    bearPeek();
   }
 });
 
