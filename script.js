@@ -14,6 +14,18 @@ function updateRects() {
   btnRect = noBtn.getBoundingClientRect();
 }
 
+/* ---- Bear peek helper ---- */
+function bearPeek() {
+  const bear = document.querySelector('.bg-bear');
+  if (!bear) return;
+
+  // Restart animation even if called rapidly
+  bear.classList.remove('peek');
+  // force reflow
+  void bear.offsetWidth;
+  bear.classList.add('peek');
+}
+
 // pick a random position inside buttonArea (top-left coords) ensuring it's at least minDist from (cx,cy)
 function chooseSafePosition(cx = null, cy = null, minDist = MIN_DISTANCE) {
   updateRects();
@@ -67,6 +79,9 @@ function moveNoAwayFrom(clientX, clientY) {
 
   const pos = chooseSafePosition(clientX, clientY);
   moveNoButtonTo(pos.x, pos.y);
+
+  // trigger the cute peek whenever "No" runs away
+  bearPeek();
 }
 
 // initial random placement
@@ -78,6 +93,9 @@ function placeNoRandom() {
   const rx = padding + Math.random() * maxX;
   const ry = padding + Math.random() * maxY;
   moveNoButtonTo(rx, ry);
+
+  // optional: peek once on initial placement
+  // bearPeek();
 }
 
 // When the mouse moves inside the button area, check distance to noBtn center
@@ -102,7 +120,6 @@ let onMouseMove = (e) => {
 
 // Make it move immediately if the mouse tries to enter the button
 noBtn.addEventListener('mouseenter', (e) => {
-  // use mouse coordinates
   moveNoAwayFrom(e.clientX, e.clientY);
 });
 
@@ -111,18 +128,21 @@ noBtn.addEventListener('touchstart', (e) => {
   e.preventDefault();
   const t = e.touches[0];
   moveNoAwayFrom(t.clientX, t.clientY);
-}, {passive:false});
+}, { passive:false });
 
 // Also move on click (prevent clicking)
 noBtn.addEventListener('click', (e) => {
   e.preventDefault();
-  // use click coordinates if available, otherwise random
+
   const cx = e.clientX || null;
   const cy = e.clientY || null;
-  if (cx && cy) moveNoAwayFrom(cx, cy);
-  else {
+
+  if (cx && cy) {
+    moveNoAwayFrom(cx, cy);
+  } else {
     const p = chooseSafePosition();
     moveNoButtonTo(p.x, p.y);
+    bearPeek();
   }
 });
 
