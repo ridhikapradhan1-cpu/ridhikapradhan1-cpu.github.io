@@ -23,35 +23,24 @@ body{
   overflow:hidden; /* keeps background bear clean */
 }
 
-/* background bouncing bear (bottom-right) */
+/* background bouncing bear */
 .bg-bear{
   position: fixed;
   right: 28px;
   bottom: 22px;
-  font-size: 25 rem;     /* decently sized */
-  opacity: 0.5;         /* background feel */
+  font-size: 7.5rem;   /* adjust size here if needed */
+  opacity: 0.35;
   pointer-events: none;
   z-index: 0;
   animation: bearBounce 2.8s ease-in-out infinite;
   transform-origin: 50% 100%;
 }
 
-/* gentle bounce */
 @keyframes bearBounce{
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50%      { transform: translateY(-14px) rotate(-2deg); }
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
 }
 
-/* peek animation trigger (we'll toggle this class from JS) */
-.bg-bear.peek{
-  animation: bearPeek 520ms cubic-bezier(.2,.9,.2,1) 1;
-}
-
-@keyframes bearPeek{
-  0%   { transform: translate(26px, 12px) rotate(6deg) scale(0.98); opacity: 0.25; }
-  60%  { transform: translate(-6px, -4px) rotate(-2deg) scale(1.03); opacity: 0.45; }
-  100% { transform: translate(0, 0) rotate(0deg) scale(1.00); opacity: 0.35; }
-}
 
 /* center container */
 .center{
